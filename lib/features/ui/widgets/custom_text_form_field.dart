@@ -22,7 +22,7 @@ TextEditingController? controller;
   TextInputType keyBoardType;
 
   // String? Function(String?)? validator;
-  CustomTextFormField({
+  CustomTextFormField( {
     this.controller,
     this.maxLines=1,
     this.obscureText,
