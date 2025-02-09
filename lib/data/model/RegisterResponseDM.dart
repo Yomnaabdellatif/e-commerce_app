@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/domin/entities/RegisterResponseEntity.dart';
+import 'package:ecommerce_app/domain/entities/RegisterResponseEntity.dart';
 
 /// message : "success"
 /// user : {"name":"Ahmed Abd Al-Muti","email":"yomna1s@gmail.com","role":"user"}

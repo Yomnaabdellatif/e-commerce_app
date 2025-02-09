@@ -1,9 +1,16 @@
 import 'package:ecommerce_app/features/ui/auth/register/register.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/di/di.dart';
 import 'core/utilities/app_theme.dart';
+import 'core/utilities/bloc_obsever.dart';
 
 void main(){
+  configureDependencies();
+  Bloc.observer = MyBlocObserver();
+
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -11,18 +18,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      initialRoute: Register.routeName,
-      routes: {
-        Register.routeName:(context)=>Register()
-      },
+    return ScreenUtilInit(
+    designSize: Size(430,932),
+      minTextAdapt: true,
+      splitScreenMode: true,
+
+      builder: (context,child){
+
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        initialRoute: Register.routeName,
+        routes: {
+          Register.routeName:(context)=>Register()
+        },);}
 
 
 
 
 
-    );
-  }
-}
+      );}}

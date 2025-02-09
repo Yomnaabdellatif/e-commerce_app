@@ -34,7 +34,7 @@ static String? validateEmail(String? value){
 
   }
 
-  static String? validateConfirmPassword(String? value,String password){
+  static String? validateConfirmPassword(String? value,String? password){
     if( value==null||value.isEmpty){
       return "required Confirm Password";
     }
