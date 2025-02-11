@@ -4,23 +4,26 @@ import 'package:ecommerce_app/core/utilities/app_colors.dart';
 import 'package:ecommerce_app/core/utilities/app_styles.dart';
 import 'package:ecommerce_app/core/utilities/dialog_utils.dart';
 import 'package:ecommerce_app/core/utilities/validators.dart';
-import 'package:ecommerce_app/features/ui/auth/register/cubit/register_states.dart';
-import 'package:ecommerce_app/features/ui/auth/register/cubit/register_view_model.dart';
+import 'package:ecommerce_app/features/ui/auth/login/cubit/login_view_model.dart';
+import 'package:ecommerce_app/features/ui/home/home_screen.dart';
 import 'package:ecommerce_app/features/ui/widgets/custom_elevated_button.dart';
 import 'package:ecommerce_app/features/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Register extends StatefulWidget {
-  static const String routeName="reg";
+import '../register/register.dart';
+import 'cubit/login_states.dart';
+
+class Login extends StatefulWidget {
+  static const String routeName="login";
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<Login> createState() => _LoginState();
 }
 
-class _RegisterState extends State<Register> {
-  var viewModel=getIt<RegisterViewModel>();
+class _LoginState extends State<Login> {
+  var viewModel=getIt<LoginViewModel>();
 
 bool visbilityPassword=true;
   bool visbilityRePassword=true;
@@ -28,19 +31,21 @@ bool visbilityPassword=true;
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RegisterViewModel,RegisterStates>(
+    return BlocListener<LoginViewModel,LoginStates>(
       bloc: viewModel,
       listener: (context,state){
-        if(state is RegisterLoading){
-          DialogUtils.showLoading(context: context, message: "Loading");
+        if(state is LoginLoading){
+          DialogUtils.showLoading(context: context, message: "Loading To Login");
 
         }
-        if(state is RegisterSuccess){
+        if(state is LoginSuccess){
 
 DialogUtils.hideLoading(context);
-DialogUtils.showMessage(context: context, message: "Success Register");
+DialogUtils.showMessage(context: context, message: "Login Success",posActionName: "Ok",posAction: (){
+  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+});
 
-        }  if(state is RegisterError){
+        }  if(state is LoginError){
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(context: context, message: state.failures.errorMessage);
 
@@ -48,7 +53,7 @@ DialogUtils.showMessage(context: context, message: "Success Register");
 
       },
       child: Scaffold(backgroundColor: AppColors.primaryLight,
-      appBar: AppBar(backgroundColor: AppColors.primaryLight,iconTheme: IconThemeData(color: AppColors.white),),
+      appBar: AppBar(backgroundColor: AppColors.primaryLight,),
         body:
       SingleChildScrollView(
         child: Container(
@@ -60,8 +65,6 @@ DialogUtils.showMessage(context: context, message: "Success Register");
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(child: Image.asset(AppAssets.routeImage)),
-              Text("Full name",style: AppStyles.bold16White,),
-              CustomTextFormField(hintText: "Full name",controller: viewModel.nameController,validator: Validators.validateFullName,),
               Text("Email",style: AppStyles.bold16White,),
               CustomTextFormField(hintText: " Email",controller: viewModel.emailController,validator:
               Validators.validateEmail,),
@@ -78,25 +81,11 @@ DialogUtils.showMessage(context: context, message: "Success Register");
 
                 },),
                 validator:Validators.validatePassword ,),
-              Text("re-Password",style: AppStyles.bold16White,),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context,Register.routeName);
+            }, child: Text("Don’t have an account? Create Account",style: AppStyles.bold16White,)),
 
-              CustomTextFormField(hintText: "re-Password",controller: viewModel.rePasswordController,obscureText: visbilityRePassword
-                  ,validator:(value)=>
-                Validators.validateConfirmPassword(value,viewModel.passwordController.text),
-                suffixIcon:  IconButton(icon: visbilityRePassword? Image(image: AssetImage(AppAssets.iconUnShowPassword)): Icon(Icons.remove_red_eye,color: AppColors.gray,)
-                  ,onPressed: (){
-                    visbilityRePassword=!visbilityRePassword;
-                    setState(() {
-
-                    });
-
-                  },),
-
-              ),
-                Text("Phone",style: AppStyles.bold16White,),
-
-                CustomTextFormField(hintText: "Phone",controller: viewModel.phoneController,keyBoardType: TextInputType.phone,validator: Validators.validatePhoneNumber,),
-            CustomElevatedButton(buttonLabel: "Sign up", onClick: viewModel.register)
+            CustomElevatedButton(buttonLabel: "Sign In", onClick: viewModel.login)
 
             ],
             ),

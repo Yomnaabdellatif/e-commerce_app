@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/features/ui/auth/register/register.dart';
+import 'package:ecommerce_app/features/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/di/di.dart';
 import 'core/utilities/app_theme.dart';
 import 'core/utilities/bloc_obsever.dart';
+import 'features/ui/auth/login/login.dart';
 
 void main(){
   configureDependencies();
@@ -28,9 +30,13 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        initialRoute: Register.routeName,
+        initialRoute: Login.routeName,
         routes: {
-          Register.routeName:(context)=>Register()
+          Register.routeName:(context)=>Register(),
+          Login.routeName:(context)=>Login(),
+      HomeScreen.routeName:(context)=>HomeScreen(),
+
+
         },);}
 
 
