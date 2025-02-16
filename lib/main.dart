@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/features/ui/auth/register/register.dart';
 import 'package:ecommerce_app/features/ui/home/home_screen.dart';
+import 'package:ecommerce_app/features/ui/home/tabs/product_tab/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           Register.routeName:(context)=>Register(),
           Login.routeName:(context)=>Login(),
       HomeScreen.routeName:(context)=>HomeScreen(),
+          ProductDetails.routeName:(context)=>ProductDetails(),
 
 
         },);}

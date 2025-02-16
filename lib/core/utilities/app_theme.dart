@@ -21,12 +21,6 @@ class AppTheme {
       iconTheme: IconThemeData(color: AppColors.primaryLight))
 
 
-      // floatingActionButtonTheme:
-      // FloatingActionButtonThemeData(
-      //     backgroundColor: AppColors.primaryLight,
-      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(75),side: BorderSide(color: AppColors.white,width: 4)
-      //     )
-      // ),
 
   );
 

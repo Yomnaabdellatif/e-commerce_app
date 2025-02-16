@@ -8,6 +8,7 @@ import 'package:ecommerce_app/features/ui/auth/login/cubit/login_view_model.dart
 import 'package:ecommerce_app/features/ui/home/home_screen.dart';
 import 'package:ecommerce_app/features/ui/widgets/custom_elevated_button.dart';
 import 'package:ecommerce_app/features/ui/widgets/custom_text_form_field.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,9 +82,15 @@ DialogUtils.showMessage(context: context, message: "Login Success",posActionName
 
                 },),
                 validator:Validators.validatePassword ,),
-            TextButton(onPressed: (){
-              Navigator.pushNamed(context,Register.routeName);
-            }, child: Text("Don’t have an account? Create Account",style: AppStyles.bold16White,)),
+            Text.rich(TextSpan(children: [TextSpan(text: "Don’t have an account?",style:AppStyles.bold16White ),
+             TextSpan(text: " Create Account",style: AppStyles.bold16White,recognizer: TapGestureRecognizer()
+               ..onTap = () {
+                 Navigator.of(context).pushNamed(
+                     Register.routeName);
+               })
+
+            ]))
+            ,
 
             CustomElevatedButton(buttonLabel: "Sign In", onClick: viewModel.login)
 

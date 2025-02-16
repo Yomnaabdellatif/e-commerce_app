@@ -15,6 +15,7 @@ class AppAssets {
   static const String  iconFavoriteSelected= 'assets/images/favorite_icon_selected.png';
   static const String  iconSearch= 'assets/images/icon_search.png';
   static const String  iconCart= 'assets/images/shopping_cart.png';
+  static const String  iconAdd= 'assets/images/added_icon.png';
 
 
 }

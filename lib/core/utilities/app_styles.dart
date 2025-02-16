@@ -82,5 +82,13 @@ class AppStyles{
       fontSize: 16,fontWeight: FontWeight.w500
       ,color: AppColors.lightGray);
 
+  static TextStyle semi12primaryLight=GoogleFonts.inter(
+      fontSize: 12,fontWeight: FontWeight.w500
+      ,color: AppColors.primaryLight);
+
+  static TextStyle semi10primaryLight=GoogleFonts.inter(
+      fontSize: 10,fontWeight: FontWeight.w500
+      ,color: AppColors.primaryLight);
+
 
 }

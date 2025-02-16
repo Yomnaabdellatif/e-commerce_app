@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/utilities/app_colors.dart';
 import '../../../core/utilities/app_styles.dart';
@@ -21,17 +22,16 @@ Function onClick;
 
   @override
   Widget build(BuildContext context) {
-    var height =MediaQuery.of(context).size.height;
-    var width =MediaQuery.of(context).size.width;
+
     return ElevatedButton(onPressed: (){
       onClick();
     },
         style: ElevatedButton.
     styleFrom(backgroundColor:backgroundColor,elevation: 0,
             disabledBackgroundColor: AppColors.transparent,overlayColor:AppColors.transparent
-            ,padding: EdgeInsets.symmetric(vertical: height*((15)/920)),
+            ,padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 40.w),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(35.r),
 
         ) ),
 
@@ -39,7 +39,7 @@ Function onClick;
           mainAxisAlignment: MainAxisAlignment.center,
     children: [
       icon?? SizedBox(),
-      SizedBox(width: width*0.01,),
+      SizedBox(width: 5.w,),
       Text(buttonLabel,style:labelStyle ?? AppStyles.semi20primaryLight,)
 
         ],
